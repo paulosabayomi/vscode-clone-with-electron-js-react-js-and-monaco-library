@@ -1,0 +1,546 @@
+:root{
+  --main-bg: #1e1e1e;
+  --sidebar-text-color: #cccccc;
+  --sidebar-icon-color: #868686;
+  --sidebar-icon-active-color: #d7d7d7;
+  --thumb-color: #ffffff68;
+  --vscode-blue: #0078d4;
+  --border-color: #2b2b2b;
+  --file-list-bg: #37373c;
+  --tabs-bg: #181818;
+}
+
+
+.ps__rail-y, .ps__thumb-y, .ps__thumb-y:hover {
+  width: 12px;
+  border-radius: 0px !important;
+  background-color: #ffffff68 !important;
+  scale: 1 !important;
+}
+
+.ps__rail-x, .ps__thumb-x, .ps__thumb-x:hover {
+  height: 3px !important;
+  border-radius: 0px !important;
+  background-color: #ffffff68 !important;
+  scale: 1 !important;
+  z-index: +9 !important;
+}
+
+.ps__rail-y, .ps__rail-x, .ps__rail-x:hover, .ps__rail-y:hover {
+  background-color: transparent !important;
+  scale: 1 !important;
+  z-index: +9 !important;
+}
+
+.ps__thumb-y, .ps__thumb-x {
+  background-color: #ffffff68;
+  z-index: +9 !important;
+}
+
+
+body {
+  padding: 0px;
+  margin: 0px;
+  background-color: var(--main-bg) !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+.wrapper-component {
+  display: grid;
+  grid-template-rows: 35px 1fr 22px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.wrapper-component > .header-section {
+  -webkit-app-region: drag;
+  border-bottom: .3px solid var(--border-color);
+}
+
+.wrapper-component > .footer-section {
+  border-top: .3px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper-component > .footer-section > div {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: var(--sidebar-text-color);
+}
+
+.wrapper-component > .footer-section > div svg {
+  width: 10px;
+  height: 10px;
+}
+
+.wrapper-component > .footer-section > div > div {
+  display: flex;
+  align-items: center;
+  padding: 0px 8px;
+}
+
+.wrapper-component > .footer-section > div > div > span {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper-component > .footer-section .remove-item {
+  width: 20px;
+  height: 100%;
+  background-color: var(--vscode-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper-component > .footer-section .remove-item svg, 
+.wrapper-component > .footer-section .bigger-icon svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.wrapper-component > .footer-section .remove-item svg path {
+  fill: white;
+}
+
+.wrapper-component > .footer-section > div svg path {
+  fill: var(--sidebar-text-color);
+}
+
+.wrapper-component > div:nth-child(2) {
+  display: grid;
+  grid-template-areas: "sidebar content";
+  grid-template-columns: 215px 1fr;
+  overflow: hidden;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section {
+  grid-area: sidebar;
+  display: flex;
+  flex-wrap: nowrap;
+  border-right: .3px solid var(--border-color);
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > div {
+  height: 100%;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: .3px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+  position: relative;
+  cursor: pointer;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon.active::after {
+  position: absolute;
+  content: " ";
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 2px;
+  background-color: var(--vscode-blue);
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon .tooltip {
+  position: absolute;
+  left: 100%;
+  font-size: 80%;
+  border: 1px solid rgb(92, 92, 92);
+  background-color: var(--main-bg) !important;  
+  width: auto;
+  text-wrap: nowrap;
+  color: var(--sidebar-text-color);
+  padding: 3px 6px;
+  border-radius: 3px;
+  display: none;
+  z-index: +9; /*Added after the tutorial*/
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon svg {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon svg path {
+  fill: var(--sidebar-icon-color);
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon.active svg path {
+  fill: var(--sidebar-icon-active-color);
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon:hover svg path {
+  fill: var(--sidebar-icon-active-color);
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .icon-list .icon:hover .tooltip {
+  display: flex;
+}
+
+.wrapper-component > div:nth-child(2) .sidebar-section > .explorer-list {
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+}
+
+.wrapper-component > div:nth-child(2) .content-section {
+  grid-area: content;
+  overflow: hidden;
+}
+
+.wrapper-component > div:nth-child(2) .content-section .default-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper-component > div:nth-child(2) .content-section .default-screen button {
+  outline: none;
+  border: none;
+  background-color: var(--vscode-blue);
+  color: white;
+  font-size: 90%;
+  padding: 6px 12px;
+  border-radius: 2px;
+  border: .3px solid var(--border-color);
+  cursor: pointer;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.637);
+}
+
+.wrapper-component > div:nth-child(2) .content-section .default-screen button:active {
+  background-color: #0067b6;
+}
+
+.content-list {
+  display: block;
+  padding-left: 10px;
+  overflow-x: hidden;
+}
+
+.content-list.main {
+  overflow-y: auto !important;
+}
+
+.content-list-wrapper > .content-item:not(.new-file-item) svg:last-child {
+  display: none;
+}
+
+.content-list-wrapper > .content-item.shown svg:last-child {
+  display: flex;
+}
+
+.content-list-wrapper > .content-item.shown:not(.new-file-item) svg:first-child {
+  display: none;
+}
+
+.content-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 1px;
+  font-size: 13px;
+  color: var(--sidebar-text-color);
+  cursor: pointer;
+  text-wrap: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.content-item:hover {
+  background-color: var(--file-list-bg);
+}
+
+.content-item > div:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.content-item svg {
+  width: 14px !important;
+  height: 14px !important;
+  margin-right: 5px;
+}
+
+.content-item > .file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content-inner {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 40px 1fr;
+}
+
+.content-inner .page-tabs-cont {
+  display: flex;
+  background-color: var(--tabs-bg);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.content-inner .page-tabs-cont .tab {
+  flex-shrink: 0;
+  font-size: 13px;
+  border-right: .3px solid var(--border-color);
+  border-bottom: .3px solid var(--border-color);
+  color: var(--sidebar-text-color);
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.content-inner .page-tabs-cont .tab > span:first-child {
+  margin-right: 6px;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child {
+  border-radius: 6px;
+  margin-left: 6px;
+  height: 22px;
+  width: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child:hover {
+  background-color: var(--tabs-bg);
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child:hover svg {
+  display: flex !important; 
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child span {
+  width: 9px;
+  height: 9px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child:hover span {
+  display: none !important;
+}
+
+.content-inner .page-tabs-cont .tab:hover > span:last-child  {
+  visibility: visible;
+}
+
+.content-inner .page-tabs-cont .tab:hover > span:last-child span {
+  display: none;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child.is_touched {
+  visibility: visible;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child.is_touched svg {
+  display: none;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child.is_touched span {
+  display: flex;
+}
+
+.content-inner .page-tabs-cont .tab > span:last-child svg, .content-inner .page-tabs-cont .tab > span:first-child svg {
+  width: 15px;
+  height: 15px;
+}
+
+.content-inner .page-tabs-cont .tab:hover,
+.content-inner .page-tabs-cont .tab.active {
+  background-color: var(--main-bg);
+}
+
+.content-inner .page-tabs-cont .tab.active::after {
+  content: " ";
+  position: absolute;
+  top: 0px;
+  height: 1px;
+  width: 100%;
+  left: 0 !important;
+  background-color: var(--vscode-blue);
+}
+
+.no-selected-files {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-selected-files svg {
+  width: 40%;
+  height: 40%;
+}
+
+.no-selected-files svg path {
+  fill: #161616;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header-section svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.header-section svg path {
+  fill: var(--sidebar-icon-color);
+}
+
+.header-section .header-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-section .header-main .text-container {
+  width: 40%;
+  height: 20px;
+  border: 1px solid #474747;
+  background-color: #2a2a2a;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80%;
+  color: var(--sidebar-icon-color);
+}
+
+.header-section .header-main .text-container svg {
+  width: 13px !important;
+  height: 13px !important;
+  margin-right: 5px;
+}
+
+.header-section .header-main > div:first-child  {
+  display: flex;
+  align-items: center;
+}
+
+.header-section .header-main > div:first-child svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.header-section .header-main > div:first-child svg:first-child {
+  margin-right: 10px !important;
+}
+
+.header-section .header-main > div:first-child svg path {
+  stroke: var(--sidebar-icon-color) !important;
+}
+
+.header-section .header-main > div:first-child {
+  margin-right: 10px;
+}
+
+.header-section .icons-container {
+  position: absolute;
+  right: 6px;
+}
+
+.header-section .icons-container svg {
+  margin-right: 8px;
+}
+
+.new-file-item .file-name {
+  border: .3px solid var(--border-color) !important;
+  width: 100%;
+  cursor: text;
+  text-wrap: nowrap;
+  white-space-collapse: preserve;
+  background-color: transparent !important;
+  outline: none !important;
+}
+
+.new-file-item:hover {
+  background-color: transparent !important;
+}
+
+.route {
+  color: var(--vscode-blue);
+  font-size: 90%;
+  text-align: center;
+}
+
+.folder-tree {
+  display: block !important;
+  /* flex-direction: column; */
+  height: 100%;
+}
+
+.folder-tree .title {
+  color: var(--sidebar-text-color);
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+}
+
+.folder-tree .explorer-content-wrapper {
+  height: calc(100% - 30px);
+  overflow: hidden;
+  display: grid !important;
+  grid-template-rows: 1fr 20px 20px !important;
+}
+
+.folder-tree .explorer-content-wrapper .content-list-outer-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-tree .explorer-content-wrapper > div:not(:first-child), .content-list-outer-container > div:first-child {
+  color: var(--sidebar-text-color);
+  font-size: 11px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 4px 6px;
+  border: .3px solid var(--border-color);
+}
+
+.folder-tree .explorer-content-wrapper > div:not(:first-child) > svg, .content-list-outer-container > div:first-child > svg {
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+}
+
+/* .folder-tree .explorer-content-wrapper svg {
+} */
+
+.folder-tree .explorer-content-wrapper > div:not(:first-child) > svg path, .content-list-outer-container > div:first-child > svg path {
+  fill: var(--sidebar-text-color);
+}

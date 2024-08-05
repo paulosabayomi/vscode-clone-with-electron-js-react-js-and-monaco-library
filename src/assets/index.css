@@ -1,0 +1,26 @@
+:root{
+  --main-bg: #1e1e1e;
+  --sidebar-text-color: #cccccc;
+  --sidebar-icon-color: #868686;
+  --sidebar-icon-active-color: #d7d7d7;
+  --thumb-color: #ffffff68;
+  --vscode-blue: #0078d4;
+  --border-color: #2b2b2b;
+}
+
+
+.ps__rail-y, .ps__thumb-y, .ps__thumb-y:hover {
+  width: 12px;
+  border-radius: 0px !important;
+  background-color: #ffffff68 !important;
+  scale: 1 !important;
+}
+
+.ps__rail-y , .ps__rail-y:hover {
+  background-color: transparent !important;
+  scale: 1 !important;
+}
+
+.ps__thumb-y {
+  background-color: #ffffff68;
+}
