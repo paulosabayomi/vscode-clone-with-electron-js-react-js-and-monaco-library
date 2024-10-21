@@ -565,7 +565,7 @@ ipcMain.on('folder-contextmenu', async (event, data) => {
     { type: 'separator' },
     { label: 'Rename', 'role': 'editMenu' },
     { label: 'Delete', role: 'delete' },
-  ] as unknown as MenuItem[]
+  ] as MenuItem[]
 
   const menu = Menu.buildFromTemplate(template)
   menu.popup({ window: BrowserWindow.fromWebContents(event.sender), })
@@ -588,7 +588,7 @@ const createWindow = (): void => {
   });
 
   // mainWindow.setWindowButtonPosition()
-  mainWindow.setWindowButtonVisibility(true)
+  os.platform() == 'darwin' && mainWindow.setWindowButtonVisibility(true);
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
