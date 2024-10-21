@@ -565,7 +565,7 @@ ipcMain.on('folder-contextmenu', async (event, data) => {
     { type: 'separator' },
     { label: 'Rename', 'role': 'editMenu' },
     { label: 'Delete', role: 'delete' },
-  ] as MenuItem[]
+  ] as unknown as MenuItem[]
 
   const menu = Menu.buildFromTemplate(template)
   menu.popup({ window: BrowserWindow.fromWebContents(event.sender), })
